@@ -25,6 +25,7 @@ body {
   box-shadow: 10px 10px 15px black;
   border: 1px solid #ffffff2e;
   border-radius: 10px;
+  backdrop-filter: blur(10px);
 }
 
 .hero h1 {
@@ -58,6 +59,7 @@ body {
   box-shadow: 10px 10px 15px black;
   border: 1px solid #ffffff2e;
   border-radius: 10px;
+  backdrop-filter: blur(10px);
 }
 
 
@@ -106,6 +108,7 @@ h2 {
   box-shadow: 10px 10px 15px black;
   border: 1px solid #ffffff2e;
   border-radius: 10px;
+  backdrop-filter: blur(10px);
 
   display: flex;
   align-items: center;
@@ -146,4 +149,5 @@ h2 {
     border-radius: 10px;
     margin: 0 10px;
     color: white;
+    backdrop-filter: blur(10px);
 }

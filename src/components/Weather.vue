@@ -1,45 +1,55 @@
 <template>
-  <div class="weather-app">
-    <div class="background-image">
-      <div class="overlay"></div>
-      <div class="search-box">
-        <input
-          v-model="city"
-          class="search-bar"
-          type="text"
-          placeholder="Search for a city..."
-        />
-        <Button @click="searchWeather">Search</Button>
-      </div>
+  <div>
+    <div class="search-bar">
+      <label for="cityInput">Enter City:</label>
+      <input id="cityInput" v-model="city" placeholder="Enter city name" />
+      <button @click="searchWeather">Search</button>
     </div>
-
-    <div class="wrapper" id="App">
-      <HelloWorld msg="The Weather Today" />
+    <div v-if="weatherData">
+      <h2>{{ weatherData.name }}</h2>
+      <p>Temperature: {{ weatherData.main.temp }}°C</p>
+      <p>Conditions: {{ weatherData.weather[0].description }}</p>
     </div>
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      city: "",
-      weatherData: {
-        "New York": { temperature: 22, conditions: "Sunny" },
-        London: { temperature: 18, conditions: "Cloudy" },
-        // Add more cities and weather data as needed
-      },
-    };
-  },
-  methods: {
-    searchWeather() {
-      const cityName = this.city.trim();
-      if (cityName && this.weatherData.hasOwnProperty(cityName)) {
-        setTimeout(() => (this.weatherData = this.weatherData[cityName]), 500);
-      } else {
-        console.error(`Weather data not available for ${cityName}`);
-      }
-    },
-  },
+<script setup lang="ts">
+import { ref } from "vue";
+
+const city = ref("Philippines"); // Default city name
+const apiKey = "4961107b1886f55d498bfb31e4fb897c"; // Replace with your actual API key
+const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
+
+const weatherData = ref({
+  name: "",
+  main: { temp: "" },
+  weather: [{ description: "" }],
+});
+
+const searchWeather = async () => {
+  try {
+    const response = await fetch(
+      `${apiUrl}?q=${city.value}&appid=${apiKey}&units=metric`
+    );
+
+    if (response.ok) {
+      const data = await response.json();
+      weatherData.value = data;
+    } else {
+      console.error("Failed to fetch weather data");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 };
+
+// Fetch initial weather data on component mount
+import { onMounted } from "vue";
+onMounted(searchWeather);
 </script>
+
+<style scoped>
+.search-bar {
+  margin-bottom: 20px;
+}
+</style>

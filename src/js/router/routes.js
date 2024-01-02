@@ -6,6 +6,7 @@ import AboutPage from "./components/About.vue";
 import WeatherCard from "./components/weathercard.vue";
 
 
+
 const routes = [
   {
     path: '/home',

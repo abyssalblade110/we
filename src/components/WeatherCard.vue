@@ -1,6 +1,6 @@
 <template>
   <div class="weather-card">
-    <h2>{{ cityName }}</h2>
+    <h2>{{ Philippines }}</h2>
     <div class="details">
       <p class="temperature">{{ temperature }}°C</p>
       <p class="conditions">{{ conditions }}</p>
