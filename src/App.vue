@@ -22,15 +22,15 @@
         </div>
 
         <div class="features">
-          <div class="feature">
+          <div class="feature1">
             <i class="fas fa-thermometer-half"></i>
             <p>Real-time Temperature</p>
           </div>
-          <div class="feature">
+          <div class="feature1">
             <i class="fas fa-tint"></i>
             <p>Humidity Information</p>
           </div>
-          <div class="feature">
+          <div class="feature1">
             <i class="fas fa-wind"></i>
             <p>Wind Speed</p>
           </div>
@@ -44,7 +44,8 @@
 import { nextTick } from "vue";
 import SearchBox from "./components/SearchBox.vue";
 import WeatherComponent from "./components/Weather.vue";
-import WeatherCard from "./components/weathercard.vue";
+import WeatherCard from "./components/WeatherCard.vue";
+import "../src/assets/css/main.css";
 
 export default {
   components: {
@@ -81,70 +82,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-/* Your exi<style scoped>
-/* Your existing styles are unchanged */
-
-.home {
-  text-align: center;
-  padding: 20px;
-  background-color: #282c34; /* Dark background color */
-  color: #61dafb; /* Light text color */
-}
-
-.hero {
-  background-color: #3498db;
-  color: #fff;
-  padding: 40px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-}
-
-.hero h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
-}
-
-.search-box {
-  margin-bottom: 20px;
-}
-
-.weather-wrap {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.location-box {
-  padding: 20px;
-  background-color: #ecf0f1;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  color: #282c34; /* Dark text color */
-}
-
-.features {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 20px;
-}
-
-.feature {
-  flex: 1;
-  padding: 20px;
-  background-color: #ecf0f1;
-  border-radius: 10px;
-  margin: 0 10px;
-  color: #282c34; /* Dark text color */
-}
-
-.feature i {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #61dafb; /* Light icon color */
-}
-
-/* Additional styling as needed */
-</style>

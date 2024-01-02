@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import { createRouter, createWebHistory } from 'vue-router';
+import "bootstrap/dist/css/bootstrap.min.css"
 import MainHome from "./components/Home.vue";
 import AboutPage from "./components/AboutPage.vue";
 import WeatherComponent from "./components/Weather.vue";
@@ -19,3 +20,4 @@ const router = createRouter({
 });
 
 createApp(App).use(router).mount('#app');
+import "bootstrap/dist/js/bootstrap.js"

@@ -1,0 +1,149 @@
+@import './base.css';
+
+
+:root {
+  --background-color:  rgba(255, 255, 255, 0.118);
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background-image: url('../img/bg-1.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.home {
+  text-align: center;
+  padding: 20px;
+}
+
+.hero {
+  background-color: var(--background-color);
+  color: rgb(232, 230, 227);
+  box-shadow: 10px 10px 15px black;
+  border: 1px solid #ffffff2e;
+  border-radius: 10px;
+}
+
+.hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+}
+
+.search-box {
+  margin-bottom: 20px;
+}
+
+.features {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.feature {
+  flex: 1;
+  padding: 20px;
+  background-color: #ecf0f1;
+  border-radius: 10px;
+  margin: 0 10px;
+}
+
+.feature i {
+  font-size: 2em;
+  margin-bottom: 10px;
+  background-color: var(--background-color);
+  color: rgb(232, 230, 227);
+  box-shadow: 10px 10px 15px black;
+  border: 1px solid #ffffff2e;
+  border-radius: 10px;
+}
+
+
+weather-card {
+  background-color: #3498db;
+  color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.weather-card:hover {
+  transform: translateY(-5px);
+}
+
+h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+}
+
+.temperature {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.conditions {
+  font-size: 1.2rem;
+}
+
+.weather-app {
+  text-align: center;
+}
+
+.background-image {
+  position: sticky;
+  height: 50vh;
+  background-color: var(--background-color);
+  color: rgb(232, 230, 227);
+  box-shadow: 10px 10px 15px black;
+  border: 1px solid #ffffff2e;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+
+.search-box,
+.search-bar,
+.search-button {
+  text-align: center;
+}
+
+.search-bar {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-size: 16px;
+  color: #020202;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+
+.feature1 {
+    flex: 1;
+    padding: 20px;
+    background-color:var(--background-color);
+    border-radius: 10px;
+    margin: 0 10px;
+    color: white;
+}
