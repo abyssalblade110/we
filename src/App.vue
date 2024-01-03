@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <main>
+      <div class="hero">
+        <h1 class="heading advance" data-category="Weather">Welcome to WeatherTech</h1>
+        <p>Your advanced source for weather insights</p>
+        <p>Your Guide to the Great Outdoors</p>
+      </div>
       <div>
-        <div class="hero">
-          <h1 class="heading advance" data-category="Weather">Welcome to WeatherTech</h1>
-          <p>Your advanced source for weather insights</p>
-          <p>Your Guide to the Great Outdoors</p>
-        </div>
         <SearchBox />
         <TimeComponent />
         <EmitWeather />
@@ -59,7 +59,6 @@ export default {
     const hourlyForecastData = ref([
       { time: "12:00 PM", temperature: 28 },
       { time: "1:00 PM", temperature: 29 },
-      // Add more hourly forecast data as needed
     ]);
 
     const weatherData = ref(null);

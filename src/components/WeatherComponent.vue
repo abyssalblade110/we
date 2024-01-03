@@ -20,7 +20,7 @@
       <background-image :weather-condition="getTemperatureRange(weatherData.main.temp)" />
     </div>
 
-    <div class="">
+    <div class="search-bar">
       <input id="cityInput" v-model="city" placeholder="Enter city name" />
       <button @click="searchWeather">Search</button>
     </div>
