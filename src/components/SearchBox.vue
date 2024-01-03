@@ -1,21 +1,10 @@
-<template>
-  <div class="search-container">
-    <div contenteditable="true" @input="handleInput" class="search-box">
-      <div class="details" placeholder="enter city name" spellcheck="false">
-        <h3>Search Your City</h3>
-      </div>
-    </div>
-    <button @click="searchWeather" class="search-button">Search</button>
-  </div>
-</template>
-
 <script setup>
-import { ref, defineProps, getCurrentInstance } from "vue";
+import { getCurrentInstance } from "vue";
 
 const { emit } = getCurrentInstance();
-const handleInput = (e) => {
-  // Handle input changes if needed
-};
+// const handleInput = (e) => {
+//   // Handle input changes if needed
+// };
 
 const searchWeather = async () => {
   const cityName = document.querySelector(".search-box").innerText.trim();

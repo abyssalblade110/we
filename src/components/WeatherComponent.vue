@@ -1,11 +1,7 @@
 <template>
   <div>
-    <div class="search-bar">
-      <label for="cityInput">Enter City:</label>
-      <input id="cityInput" v-model="city" placeholder="Enter city name" />
-      <button @click="searchWeather">Search</button>
-    </div>
-    <div v-if="weatherData">
+    <div v-if="weatherData" class="weather-info">
+      <!-- Render weather information -->
       <h2>{{ weatherData.name }}</h2>
       <p class="temperature" :class="getTemperatureClass(weatherData.main.temp)">
         Temperature: {{ weatherData.main.temp }}°C
@@ -15,21 +11,26 @@
         <p>Wind Speed: {{ weatherData.wind.speed }} m/s</p>
         <p>Humidity: {{ weatherData.main.humidity }}%</p>
       </div>
-      <!-- Emit weather data to the parent component -->
       <emit-weather
         :temperature="weatherData.main.temp"
         :humidity="weatherData.main.humidity"
         :wind-speed="weatherData.wind.speed"
         @weather-updated="onWeatherUpdated"
       />
+      <background-image :weather-condition="getTemperatureRange(weatherData.main.temp)" />
+    </div>
+
+    <div class="">
+      <input id="cityInput" v-model="city" placeholder="Enter city name" />
+      <button @click="searchWeather">Search</button>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, provide, getCurrentInstance } from "vue";
+import { ref, onMounted, provide } from "vue";
 
-const city = ref("Philippines"); // Default city name
+const city = ref("Cebu City");
 const apiKey = "4961107b1886f55d498bfb31e4fb897c"; // Replace with your actual API key
 const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
 
@@ -39,8 +40,6 @@ const weatherData = ref({
   weather: [{ description: "" }],
   wind: { speed: "" },
 });
-
-const instance = getCurrentInstance();
 
 const searchWeather = async () => {
   try {
@@ -59,6 +58,33 @@ const searchWeather = async () => {
   }
 };
 
+const getCurrentLocationWeather = async () => {
+  try {
+    // Get current location coordinates
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
+
+        // Fetch weather data using coordinates
+        const response = await fetch(
+          `${apiUrl}?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+        );
+
+        if (response.ok) {
+          const data = await response.json();
+          weatherData.value = data;
+        } else {
+          console.error("Failed to fetch weather data");
+        }
+      });
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
 const getTemperatureClass = (temp) => {
   if (temp < 10) {
     return "temperature-cold";
@@ -71,20 +97,23 @@ const getTemperatureClass = (temp) => {
   }
 };
 
-// Emit weather data to the parent component
 const onWeatherUpdated = () => {
-  instance.emit("weather-updated", {
-    temperature: weatherData.value.main.temp,
-    humidity: weatherData.value.main.humidity,
-    windSpeed: weatherData.value.wind.speed,
-  });
+  // Emit weather data to the parent component
+  provide("weatherData", weatherData.value.main.temp);
 };
 
-// Provide weather data to child components
-provide("weatherData", weatherData);
+const getTemperatureRange = (temp) => {
+  if (temp < 16) {
+    return "cold";
+  } else if (temp >= 16 && temp <= 30) {
+    return "moderate";
+  } else {
+    return "hot";
+  }
+};
 
 // Fetch initial weather data on component mount
-onMounted(searchWeather);
+onMounted(getCurrentLocationWeather);
 </script>
 
 <style scoped>
