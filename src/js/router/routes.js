@@ -3,7 +3,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import MainHome from "./components/Home.vue";
 import AboutPage from "./components/About.vue";
-import WeatherCard from "./components/weathercard.vue";
+import WeatherCard from "./components/WeatherCard.vue";
+import LiveSearch from "./components/"
 
 
 

@@ -5,46 +5,16 @@
     <link rel="icon" href="/favicon.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vite App</title>
-    <script type="module" crossorigin src="/assets/index-LPKphnGE.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-fvMmf52Z.css">
+    <script type="module" crossorigin src="/assets/index-hmbzntEx.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index--rWAsQq5.css">
   </head>
   <body>
     <div id="app"></div>
+
+    <!-- Feature Button -->
+    <div class="feature1" onclick="handleFeatureClick()">
+      <h3>Feature Button</h3>
+      <p>Click me</p>
+    </div>
   </body>
-</html>
-<!-- index.html -->
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-</head>
-<body>
-  <div id="weather-container">
-    <h1 id="city">Loading...</h1>
-    <p id="temperature">Temperature: Loading...</p>
-    <p id="conditions">Conditions: Loading...</p>
-  </div>
-
-  <script>
-    // Your client-side JavaScript code goes here
-    document.addEventListener('DOMContentLoaded', () => {
-      // Fetch data from your server-side API endpoint
-      fetch('/api/weather')
-        .then(response => response.json())
-        .then(data => {
-          const cityElement = document.getElementById('city');
-          const temperatureElement = document.getElementById('temperature');
-          const conditionsElement = document.getElementById('conditions');
-
-          cityElement.textContent = `City: ${data.city}`;
-          temperatureElement.textContent = `Temperature: ${data.temperature}°C`;
-          conditionsElement.textContent = `Conditions: ${data.conditions}`;
-        })
-        .catch(error => console.error('Error fetching weather:', error));
-    });
-  </script>
-</body>
 </html>

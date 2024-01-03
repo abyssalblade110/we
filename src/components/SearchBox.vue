@@ -1,7 +1,6 @@
-<!-- SearchBox.vue -->
 <template>
   <div class="search-container">
-    <div contenteditable="true" @keydown="searchWeather" class="search-box">
+    <div contenteditable="true" @input="handleInput" class="search-box">
       <div class="details" placeholder="enter city name" spellcheck="false">
         <h3>Search Your City</h3>
       </div>
@@ -11,20 +10,40 @@
 </template>
 
 <script setup>
-const searchWeather = (e) => {
-  if (e.key === "Enter" || e.type === "click") {
-    const cityName = document.querySelector(".search-box").innerText.trim();
+import { ref, defineProps, getCurrentInstance } from "vue";
 
-    if (cityName) {
-      fetch(`/api/weather?city=${encodeURIComponent(cityName)}`)
-        .then((response) => response.json())
-        .then((data) => {
-          // Emit the weather data to the parent component
-          emit("search", data);
-        })
-        .catch((error) => {
-          console.error("Error fetching weather data:", error);
+const { emit } = getCurrentInstance();
+const handleInput = (e) => {
+  // Handle input changes if needed
+};
+
+const searchWeather = async () => {
+  const cityName = document.querySelector(".search-box").innerText.trim();
+
+  if (cityName) {
+    try {
+      const response = await fetch(`/api/weather?city=${encodeURIComponent(cityName)}`);
+      const weatherData = await response.json();
+
+      // Check if the required properties are present in the response
+      if (
+        weatherData.main &&
+        weatherData.main.temp &&
+        weatherData.wind &&
+        weatherData.wind.speed &&
+        weatherData.main.humidity
+      ) {
+        // Emit the weather data to the parent component, including wind speed, humidity, and temperature
+        emit("search", {
+          temperature: weatherData.main.temp,
+          humidity: weatherData.main.humidity,
+          windSpeed: weatherData.wind.speed,
         });
+      } else {
+        console.error("Invalid weather data format");
+      }
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
     }
   }
 };

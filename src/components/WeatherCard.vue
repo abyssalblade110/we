@@ -1,10 +1,17 @@
 <template>
   <div class="weather-card">
-    <h2>{{ Philippines }}</h2>
+    <h2>{{ currentLocation }}</h2>
     <div class="details">
-      <p class="temperature">{{ temperature }}°C</p>
+      <p class="temperature">{{ currentTemperature }}°C</p>
       <p class="conditions">{{ conditions }}</p>
-      <!-- Add more details as needed -->
+    </div>
+    <div class="forecast">
+      <h3>24-Hour Forecast</h3>
+      <ul>
+        <li v-for="(hourlyData, index) in hourlyForecast" :key="index">
+          {{ hourlyData.time }}: {{ hourlyData.temperature }}°C
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -13,14 +20,13 @@
 export default {
   name: "WeatherCard",
   props: {
-    cityName: String,
-    temperature: Number,
+    currentLocation: String,
+    currentTemperature: Number,
     conditions: String,
+    hourlyForecast: Array,
     // Add more props as needed
   },
 };
 </script>
 
-<style scoped>
-/* Add more styling as needed */
-</style>
+<style scoped></style>
